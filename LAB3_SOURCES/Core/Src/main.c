@@ -19,7 +19,8 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
+#include "software_timer.h"
+#include "button.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -78,13 +79,13 @@ void display7SEG(int num) {
     }
 
     // Set the GPIO pins according to the 7-segment pattern for the digit
-    HAL_GPIO_WritePin(SEG_A_GPIO_Port, SEG_A_Pin, (segmentPatterns[num] >> 0) & 1);
-    HAL_GPIO_WritePin(SEG_B_GPIO_Port, SEG_B_Pin, (segmentPatterns[num] >> 1) & 1);
-    HAL_GPIO_WritePin(SEG_C_GPIO_Port, SEG_C_Pin, (segmentPatterns[num] >> 2) & 1);
-    HAL_GPIO_WritePin(SEG_D_GPIO_Port, SEG_D_Pin, (segmentPatterns[num] >> 3) & 1);
-    HAL_GPIO_WritePin(SEG_E_GPIO_Port, SEG_E_Pin, (segmentPatterns[num] >> 4) & 1);
-    HAL_GPIO_WritePin(SEG_F_GPIO_Port, SEG_F_Pin, (segmentPatterns[num] >> 5) & 1);
-    HAL_GPIO_WritePin(SEG_G_GPIO_Port, SEG_G_Pin, (segmentPatterns[num] >> 6) & 1);
+    HAL_GPIO_WritePin(SEG_A_1_GPIO_Port, SEG_A_1_Pin, (segmentPatterns[num] >> 0) & 1);
+    HAL_GPIO_WritePin(SEG_B_1_GPIO_Port, SEG_B_1_Pin, (segmentPatterns[num] >> 1) & 1);
+    HAL_GPIO_WritePin(SEG_C_1_GPIO_Port, SEG_C_1_Pin, (segmentPatterns[num] >> 2) & 1);
+    HAL_GPIO_WritePin(SEG_D_1_GPIO_Port, SEG_D_1_Pin, (segmentPatterns[num] >> 3) & 1);
+    HAL_GPIO_WritePin(SEG_E_1_GPIO_Port, SEG_E_1_Pin, (segmentPatterns[num] >> 4) & 1);
+    HAL_GPIO_WritePin(SEG_F_1_GPIO_Port, SEG_F_1_Pin, (segmentPatterns[num] >> 5) & 1);
+    HAL_GPIO_WritePin(SEG_G_1_GPIO_Port, SEG_G_1_Pin, (segmentPatterns[num] >> 6) & 1);
 }
 /* USER CODE END 0 */
 
@@ -123,10 +124,16 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  init_Button();
   while (1)
   {
     /* USER CODE END WHILE */
-
+	  if (isButtonPressed(0) == 1) {
+		  HAL_GPIO_TogglePin(LED_RED1_GPIO_Port, LED_RED1_Pin);
+	  }
+	  if (isButtonLongPressed(0) == 1) {
+		  HAL_GPIO_TogglePin(LED_RED2_GPIO_Port, LED_RED2_Pin);
+	  }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -267,7 +274,8 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-
+	timerRun();
+	getKeyInput();
 }
 /* USER CODE END 4 */
 

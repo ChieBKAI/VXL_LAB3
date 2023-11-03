@@ -1,4 +1,4 @@
 button.c:12:6:init_Button	16	static
 button.c:24:5:isButtonPressed	16	static
 button.c:31:5:isButtonLongPressed	16	static
-button.c:40:6:getKeyInput	16	static
+button.c:39:6:getKeyInput	16	static

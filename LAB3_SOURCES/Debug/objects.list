@@ -1,4 +1,6 @@
 "./Core/Src/button.o"
+"./Core/Src/display.o"
+"./Core/Src/input_reader.o"
 "./Core/Src/main.o"
 "./Core/Src/software_timer.o"
 "./Core/Src/stm32f1xx_hal_msp.o"

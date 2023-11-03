@@ -1,0 +1,7 @@
+display.c:9:6:display7SEG	32	static
+display.c:47:6:toggle_SEG	16	static
+display.c:56:6:turn_off_SEG	8	static
+display.c:61:6:update_SEG	16	static
+display.c:69:6:DISPLAY_OUTPUT	8	static
+display.c:75:6:OFF_ALL_LED	8	static
+display.c:83:6:LED_BLINKY	8	static
